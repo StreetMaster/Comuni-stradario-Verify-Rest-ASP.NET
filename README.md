@@ -1,6 +1,6 @@
 # Comuni italiani e stradario. Webservice di verifica e correzione.
-## Demo Verify Rest ASP.NET
-Comuni italiani e stradario. Demo ASP.NET per l'utilizzo del ws rest VERIFY di verifica e correzione. Gratuito per le prime 250 chiamate mensili.
+## Verify Rest ASP.NET
+Comuni italiani e stradario. Soluzione ASP.NET per l'utilizzo del ws rest VERIFY di verifica e correzione. Gratuito per le prime 250 chiamate mensili.
 
 ### Ambiente di sviluppo:
   - C#
