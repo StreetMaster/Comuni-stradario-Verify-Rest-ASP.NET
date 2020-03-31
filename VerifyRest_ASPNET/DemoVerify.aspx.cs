@@ -8,7 +8,7 @@ namespace VerifyRest_ASPNET
     /// realizzato da StreetMaster Italia
     /// 
     /// L'end point del servizio è 
-    ///     http://ec2-46-137-97-173.eu-west-1.compute.amazonaws.com/smrest/webresources/verify
+    ///     https://streetmaster.streetmaster.it/smrest/webresources/verify
     ///     
     /// Per l'utilizzo registrarsi sul sito http://streetmaster.it e richiedere la chiave per il servizio VERIFY 
     /// Il protocollo di comunicazione e' in formato JSON
@@ -30,11 +30,15 @@ namespace VerifyRest_ASPNET
             outArea.Style["Border-color"] = "#336600";
 
             // inizializzazione client del servizio VERIFY
-            var clientVerify = new RestSharp.RestClient();
-            clientVerify.BaseUrl = new Uri("http://ec2-46-137-97-173.eu-west-1.compute.amazonaws.com");
+            var clientVerify = new RestSharp.RestClient
+            {
+                BaseUrl = new Uri("https://streetmaster.streetmaster.it")
+            };
 
-            var request = new RestRequest("smrest/webresources/verify", Method.GET);
-            request.RequestFormat = DataFormat.Json;
+            var request = new RestRequest("smrest/webresources/verify", Method.GET)
+            {
+                RequestFormat = DataFormat.Json
+            };
 
             // valorizzazione input
             // per l'esempio viene valorizzato un insieme minimo dei parametri
@@ -77,7 +81,7 @@ namespace VerifyRest_ASPNET
                     outArea.InnerHtml = "<p><font color=\"red\">COMUNE\\FRAZIONE NON RICONOSCIUTO</font></p>";
                 else if (outCall.CodErr == 125)
                 {
-                    String htmlOut= "<p><font color=\"red\">COMUNE\\FRAZIONE AMBIGUO</font></p>";
+                    var htmlOut= "<p><font color=\"red\">COMUNE\\FRAZIONE AMBIGUO</font></p>";
 
                     htmlOut += "<table>";
                     foreach (VerifyCand outElem in outCall.Output)
@@ -114,7 +118,7 @@ namespace VerifyRest_ASPNET
                     txtProv.Text = outCall.Output[0].Prov;
                     txtComune.Text = outCall.Output[0].Comune;
                 
-                    String htmlOut = "<p><font color=\"red\">INDIRIZZO AMBIGUO</font></p>";
+                    var htmlOut = "<p><font color=\"red\">INDIRIZZO AMBIGUO</font></p>";
                     htmlOut += "<table>";
                     foreach (VerifyCand outElem in outCall.Output)
                     {
